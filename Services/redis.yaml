@@ -3,13 +3,15 @@ kind: Service
 metadata:
   labels:
     app: redis
+    service: redis
   name: redis
   namespace: vote
 spec:
   type: ClusterIP
   ports:
-  - name: "redis-service"
-    port: 6379
-    targetPort: 6379
+    - name: tcp
+      protocol: TCP
+      port: 6379
+      targetPort: 6379
   selector:
     app: redis

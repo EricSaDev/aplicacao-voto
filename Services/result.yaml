@@ -3,13 +3,15 @@ kind: Service
 metadata:
   labels:
     app: result
+    service: result
   name: result
   namespace: vote
 spec:
   type: LoadBalancer
   ports:
-  - name: "result-service"
-    port: 80
-    targetPort: 80
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 80
   selector:
     app: result

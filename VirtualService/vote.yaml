@@ -7,3 +7,12 @@ spec:
   - "*"
   gateways:
   - vote-gateway
+  http:
+  - match:
+    - uri:
+        exact: /vote
+    route:
+    - destination:
+        host: vote
+        port:
+          number: 80
