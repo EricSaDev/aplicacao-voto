@@ -7,7 +7,7 @@ metadata:
   name: result
   namespace: vote
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
     - name: http
       protocol: TCP

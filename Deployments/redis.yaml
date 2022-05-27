@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: redis
+    version: v1
   name: redis
   namespace: vote
 spec:
@@ -14,6 +15,7 @@ spec:
     metadata:
       labels:
         app: redis
+        version: v1
       annotations:
         sidecar.istio.io/inject: 'true'
     spec:

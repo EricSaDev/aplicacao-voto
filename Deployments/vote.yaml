@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: vote
+    version: v1
   name: vote
   namespace: vote
 spec:
@@ -14,6 +15,7 @@ spec:
     metadata:
       labels:
         app: vote
+        version: v1
       annotations:
         sidecar.istio.io/inject: 'true'
     spec:

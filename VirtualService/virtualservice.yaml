@@ -1,12 +1,12 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: vote
+  name: virtualservice
 spec:
   hosts:
   - "*"
   gateways:
-  - vote-gateway
+  - gateway
   http:
   - match:
     - uri:
