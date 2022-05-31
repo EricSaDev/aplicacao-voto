@@ -1,18 +1,18 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: virtualservice
+  name: result-virtualservice
 spec:
   hosts:
-  - "*"
+    - result.apps.cluster-0f64.0f64.example.opentlc.com
   gateways:
-  - gateway
+    - vote-gateway
   http:
   - match:
     - uri:
-        exact: /vote
+        prefix: /
     route:
     - destination:
-        host: vote
+        host: result.istio-vote.svc.cluster.local
         port:
           number: 80

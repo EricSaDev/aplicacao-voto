@@ -1,27 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: result
   labels:
     app: result
-    version: v1
-  name: result
-  namespace: vote
+    version: v1  
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: result
+      version: v1
   template:
     metadata:
-      labels:
-        app: result
-        version: v1
       annotations:
         sidecar.istio.io/inject: 'true'
+      labels:
+        app: result
+        version: v1      
     spec:
+      serviceAccountName: result
       containers:
-      - image: kodekloud/examplevotingapp_result:v1
-        name: result
+      - name: result
+        image: kodekloud/examplevotingapp_result:v1
+        imagePullPolicy: IfNotPresent 
         ports:
         - containerPort: 80
           name: result

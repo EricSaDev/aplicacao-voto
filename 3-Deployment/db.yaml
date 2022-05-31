@@ -1,27 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: db
   labels:
     app: db
     version: v1
-  name: db
-  namespace: vote
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: db
+      version: v1
   template:
     metadata:
-      labels:
-        app: db
-        version: v1
       annotations:
         sidecar.istio.io/inject: 'true'
+      labels:
+        app: db
+        version: v1      
     spec:
+      serviceAccountName: db
       containers:
-      - image: postgres:9.4
-        name: postgres
+      - name: postgres
+        image: postgres:9.4
+        imagePullPolicy: IfNotPresent 
         env:
         - name: POSTGRES_USER
           value: postgres
